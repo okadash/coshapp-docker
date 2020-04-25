@@ -1,0 +1,9 @@
+FROM debian:10.3
+MAINTAINER Okadarien Saru <okadas@dev.sysnk.net>
+
+RUN apt-get update
+RUN apt install -y openvpn
+RUN apt install -y strongswan strongswan-pki strongswan-swanctl charon-systemd
+RUN apt-get clean all
+RUN useradd -m duser
+CMD /bin/sh

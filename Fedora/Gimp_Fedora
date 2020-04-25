@@ -1,0 +1,11 @@
+ARG coshapp_ver
+FROM fedora:${coshapp_ver:-rawhide}
+label maintainer="Okadarien Saru <okadas@dev.sysnk.net>"
+
+RUN dnf update -y
+RUN dnf groupinstall --allowerasing -y MATE\ Desktop
+RUN dnf install -y gimp
+RUN dnf install -y google-noto-fonts-common
+RUN dnf clean all
+RUN useradd -m fuser
+CMD /bin/sh
