@@ -18,4 +18,5 @@ build_image(){
       docker push $img_desc
     done &
   done
+  wait
 }
