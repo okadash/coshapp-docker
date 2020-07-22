@@ -1,4 +1,5 @@
-FROM debian:10.3
+ARG coshapp_ver
+FROM debian:${coshapp_ver:-10.3}
 MAINTAINER Okadarien Saru <okadas@dev.sysnk.net>
 
 RUN apt-get update
