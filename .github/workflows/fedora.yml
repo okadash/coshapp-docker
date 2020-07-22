@@ -1,4 +1,4 @@
-name: Docker for archlinux
+name: Docker for fedora
 
 on:
   push:
@@ -24,8 +24,8 @@ jobs:
       - name: Log into registry
         run: echo "${{ secrets.DOCKERHUB_SECRET }}" | docker login --username ${LOGIN_NAME:-coshapp} --password-stdin
 
-      - name: Build and push Archlinux images
+      - name: Build and push Fedora images
         run: |
           . workflow_functions.sh
-          coshapp_ver=latest build_image Archlinux/*
+          coshapp_ver=latest build_image Fedora/*
 
