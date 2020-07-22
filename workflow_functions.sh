@@ -10,7 +10,7 @@ set_image_name(){
 }
           
 build_image(){ 
-  for coshapp_ver in 10.4-slim; do 
+  for coshapp_ver in ${coshapp_ver:-10.4-slim}; do 
     for j in $@; do
       export coshapp_ver;
       set_image_name $j ;
@@ -18,4 +18,5 @@ build_image(){
       docker push $img_desc
     done &
   done
+  wait
 }
