@@ -13,7 +13,9 @@ WORKDIR /usr/local
 RUN curl -sL https://download.jetbrains.com/idea/ideaIC-2020.1.tar.gz > idea.tgz
 RUN tar xzf idea.tgz
 ENV PATH=/usr/local/idea-IC-201.6668.121/bin:$PATH
+RUN apt-get install -y git
 
 RUN apt-get clean all
 RUN useradd -m duser
+USER duser
 CMD /bin/sh
