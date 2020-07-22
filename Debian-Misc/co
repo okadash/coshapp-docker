@@ -1,0 +1,5 @@
+FROM coshapp/wayland:debian-10.3
+USER root
+RUN useradd -u 1150 -m aomin
+USER aomin
+CMD /bin/sh

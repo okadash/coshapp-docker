@@ -1,0 +1,7 @@
+FROM coshapp/gnome:latest
+USER root 
+RUN useradd -u 1150 -m aomin
+RUN apt-get install -y xorg xinit vim-tiny
+RUN apt-get clean -y all
+USER aomin
+CMD /bin/sh

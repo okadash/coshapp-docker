@@ -2,4 +2,4 @@
 
 # COSHAPP dockerfile templates
 
-Coshapp is application layer COSH.
+Coshapp is application layer for COSH.
