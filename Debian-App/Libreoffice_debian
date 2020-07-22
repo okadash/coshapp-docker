@@ -7,7 +7,7 @@ RUN apt-get install -y mate
 RUN apt-get install -y sudo
 RUN apt-get install -y locales locales-all
 RUN apt-get install -y firefox-esr 
-RUN apt-get install -y libreoffice 
+RUN apt-get install -y libreoffice-gtk3
 
 RUN apt-get clean all
 RUN useradd -m duser

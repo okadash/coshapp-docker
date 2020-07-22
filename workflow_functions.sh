@@ -14,8 +14,10 @@ build_image(){
     for j in $@; do
       export coshapp_ver;
       set_image_name $j ;
-      docker build --build-arg=coshapp_ver=$coshapp_ver -t ${img_desc:?img not specified} -f $j .;
-      docker push $img_desc
+      test `basename $j` != "version" {
+        docker build --build-arg=coshapp_ver=$coshapp_ver -t ${img_desc:?img not specified} -f $j .;
+        docker push $img_desc
+      }
     done &
   done
   wait

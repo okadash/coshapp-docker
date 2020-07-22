@@ -8,5 +8,5 @@ RUN pacman -Sy --noconfirm thunderbird thunderbird-i18n-ja
 RUN pacman -Sy --noconfirm noto-fonts 
 RUN pacman -S --clean --noconfirm
 RUN useradd -m auser
-RUN ln -sv /usr/lib64/libffi.so.6 /usr/lib64/libffi.so.7
+RUN test ! -e /usr/lib64/libffi.so.7 && ln -sv /usr/lib64/libffi.so.6 /usr/lib64/libffi.so.7
 CMD /bin/sh

@@ -1,4 +1,4 @@
-name: Docker for deb-lite
+name: Docker for deb-app
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
       - name: Log into registry
         run: echo "${{ secrets.DOCKERHUB_SECRET }}" | docker login --username ${LOGIN_NAME:-coshapp} --password-stdin
 
-      - name: Build and push Debian Lite images
+      - name: Build and push Debian App images
         run: |
           . workflow_functions.sh
-          build_image Debian-Lite/*
+          build_image Debian-App/*
