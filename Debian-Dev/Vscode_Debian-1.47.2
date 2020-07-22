@@ -1,0 +1,48 @@
+ARG coshapp_ver
+FROM debian:${coshapp_ver}
+label maintainer="Okadarien Saru <okadas@dev.sysnk.net>"
+
+#CANNOT BUILD CODE-OSS
+
+RUN apt-get update
+RUN apt-get install -y mate
+RUN apt-get install -y sudo
+RUN apt-get install -y locales locales-all
+RUN apt-get install -y curl
+RUN apt-get install -y firefox-esr 
+
+#install build toolchain
+RUN apt-get install -y  build-essential pkg-config libx11-dev libxkbfile-dev libsecret-1-dev
+RUN apt-get install -y git
+RUN apt-get clean all
+RUN curl -sL https://nodejs.org/dist/v12.18.3/node-v12.18.3-linux-x64.tar.xz > node.tar.xz
+RUN tar xJf node.tar.xz
+ENV PATH=/node-v12.18.3-linux-x64/bin:$PATH
+
+#install yarn
+RUN npm install -g npm
+RUN npm install -g yarn
+
+#download vscode
+RUN curl -sL https://github.com/microsoft/vscode/archive/1.47.2.tar.gz > vscode.tgz
+RUN tar xzf vscode.tgz
+WORKDIR /vscode-1.47.2
+RUN yarn
+RUN yarn electron
+RUN yarn compile
+
+ENV CODE=".build/electron/code-oss"
+RUN node build/lib/builtInExtensions.js
+ENV NODE_ENV=development
+ENV VSCODE_DEV=1
+ENV VSCODE_CLI=1
+ENV ELECTRON_ENABLE_STACK_DUMPING=1
+ENV ELECTRON_ENABLE_LOGGING=1
+ENV VSCODE_LOGS=
+
+ENV PATH=/vscode-1.47.2/scripts:$PATH
+
+RUN useradd -m -p qassword duser
+USER duser
+
+CMD /bin/sh
