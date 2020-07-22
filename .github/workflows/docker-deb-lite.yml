@@ -1,4 +1,4 @@
-name: Docker for deb-lite
+name: Docker for deb-app
 
 on:
   push:
@@ -27,4 +27,4 @@ jobs:
       - name: Build and push Debian Lite images
         run: |
           . workflow_functions.sh
-          build_image Debian-Lite/*
+          build_image Debian-App/*
