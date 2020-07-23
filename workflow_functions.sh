@@ -18,7 +18,6 @@ build_image(){
         docker build --build-arg=coshapp_ver=$coshapp_ver -t ${img_desc:?img not specified} -f $j .;
         docker push $img_desc
       }
-    done &
+    done
   done
-  wait
 }
