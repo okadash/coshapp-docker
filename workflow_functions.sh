@@ -6,6 +6,7 @@ set_image_name(){
   image_name=`echo $1 | tr A-Z a-z | sed s/_\.\*//g`; 
   image_name=${image_name#*/};
   tag_name=`echo $1 | tr A-Z a-z | sed s/\.\*_//g`; 
+  test ! -z "$tag_name" || tag_name=null
   img_desc="${LOGIN_NAME:-coshapp}/${image_name:?no imagename}:${tag_name:?no tagname}-${coshapp_ver:?no ver}" 
 }
           

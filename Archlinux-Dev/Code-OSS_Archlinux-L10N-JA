@@ -6,7 +6,7 @@ RUN pacman -Sy --noconfirm sudo
 RUN pacman -Sy --noconfirm mate xorg-server xorg-drivers
 RUN pacman -Sy --noconfirm noto-fonts 
 RUN pacman -Sy --noconfirm base-devel
-RUN pacman -Sy --noconfirm git gulp npm python2 yarn nodejs-lts-dubnium
+RUN pacman -Sy --noconfirm git
 RUN pacman -S --clean --noconfirm
 RUN useradd -m auser
 RUN usermod -g wheel auser
@@ -18,6 +18,7 @@ RUN git config --global user.email saru@example.com
 RUN git clone https://aur.archlinux.org/code-git.git
 WORKDIR /home/auser/code-git
 RUN makepkg -s --noprepare --nobuild --noconfirm
+RUN makepkg -s --noconfirm
 
 FROM archlinux/base:${coshapp_ver:-latest}
 RUN pacman -Sy --noconfirm sudo
@@ -25,10 +26,10 @@ RUN pacman -Sy --noconfirm mate xorg-server xorg-drivers
 RUN pacman -Sy --noconfirm noto-fonts 
 RUN pacman -Sy --noconfirm base-devel
 RUN pacman -Sy --noconfirm git gulp npm python2 yarn nodejs-lts-dubnium
-COPY --from=builder /home/auser/code-git /code-git
-RUN pacman -Q
-RUN pacman -S --clean --noconfirm
-RUN useradd -m auser
-
+RUN useradd -u 1000 -m auser
+COPY --from=builder /home/auser/code-git/code-git-1.38.0.r15049.g313381b6783-1-x86_64.pkg.tar.zst /code-x86_64.pkg.tar.zst
+RUN pacman -U --clean --noconfirm /code-x86_64.pkg.tar.zst
+USER auser
+WORKDIR /home/auser
 
 CMD /bin/sh
