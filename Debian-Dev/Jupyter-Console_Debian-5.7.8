@@ -7,9 +7,15 @@ RUN apt-get install -y mate
 RUN apt-get install -y sudo
 RUN apt-get install -y locales locales-all
 RUN apt-get install -y curl
-RUN apt-get install -y firefox-esr firefox-esr-l10n-ja
-RUN apt-get install -y gnome-builder
-RUN apt-get install -y fonts-noto-mono fonts-noto-cjk fonts-noto-color-emoji
+RUN apt-get install -y jupyter-notebook
+RUN apt-get install -y python3-nbsphinx
+RUN apt-get install -y python3-qtconsole
+RUN apt-get install -y jupyter-qtconsole
 RUN apt-get clean all
 RUN useradd -m duser
+RUN mkdir -p /run/user/1000
+RUN chown 1000 /run/user/1000
+RUN chmod 700 /run/user/1000
+USER duser
+WORKDIR /home/duser
 CMD /bin/sh

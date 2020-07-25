@@ -3,11 +3,6 @@ FROM debian:${coshapp_ver:-10.4}
 label maintainer="Okadarien Saru <okadas@dev.sysnk.net>"
 
 RUN apt-get update
-RUN apt-get install -y mate
-RUN apt-get install -y sudo
-RUN apt-get install -y locales locales-all
-RUN apt-get install -y gnote
-
+RUN apt-get install -y glusterfs-server
 RUN apt-get clean all
-RUN useradd -m duser
 CMD /bin/sh
