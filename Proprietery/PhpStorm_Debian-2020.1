@@ -1,5 +1,5 @@
 ARG coshapp_ver
-FROM debian:${coshapp_ver}
+FROM debian:${coshapp_ver:-10.4}
 label maintainer="Okadarien Saru <okadas@dev.sysnk.net>"
 
 RUN apt-get update
@@ -10,10 +10,11 @@ RUN apt-get install -y curl
 RUN apt-get install -y firefox-esr 
 RUN apt-get install -y openjdk-11-jre openjdk-11-jdk
 WORKDIR /usr/local
-RUN curl -sL https://download.jetbrains.com/idea/ideaIC-2020.1.tar.gz > idea.tgz
+RUN curl -sL https://download.jetbrains.com/webide/PhpStorm-2020.1.4.tar.gz > idea.tgz
 RUN tar xzf idea.tgz
-ENV PATH=/usr/local/idea-IC-201.6668.121/bin:$PATH
+ENV PATH=/usr/local/PhpStorm-201.8743.18/bin:$PATH
 RUN apt-get install -y git
+RUN apt-get install -y docker php composer
 
 RUN apt-get clean all
 RUN useradd -m duser
