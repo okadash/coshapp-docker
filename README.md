@@ -8,3 +8,8 @@
 # COSHAPP dockerfile templates
 
 Coshapp is application layer for COSH.
+
+# ATTENTION
+
+DO NOT DISTRIBUTE Proprietery apps build with ./Proprietery.
+Use it on your duty.
