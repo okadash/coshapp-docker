@@ -1,4 +1,4 @@
-name: Docker for deb-base
+name: debian-base
 
 on:
   push:
