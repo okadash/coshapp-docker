@@ -1,0 +1,73 @@
+ARG coshapp_ver
+FROM debian:${coshapp_ver:-10.4}
+label maintainer="Okadarien Saru <okadas@dev.sysnk.net>"
+
+#CANNOT BUILD CODE-OSS
+
+RUN apt-get update
+RUN apt-get install -y mate
+RUN apt-get install -y pulseaudio
+RUN apt-get install -y sudo
+RUN apt-get install -y locales locales-all
+RUN apt-get install -y curl
+RUN apt-get install -y firefox-esr 
+
+#install build toolchain
+RUN apt-get install -y  build-essential pkg-config libx11-dev libxkbfile-dev libsecret-1-dev
+RUN apt-get install -y git
+RUN apt-get install -y nodejs npm yarnpkg gulp
+RUN apt-get install -y yarn
+RUN apt-get clean all
+##RUN curl -sL https://nodejs.org/dist/v12.18.3/node-v12.18.3-linux-x64.tar.xz > node.tar.xz
+##RUN tar xJf node.tar.xz
+##ENV PATH=/node-v12.18.3-linux-x64/bin:$PATH
+
+#install yarn
+RUN npm install -g npm
+RUN npm update -g
+RUN npm install -g yarn
+RUN npm install -g gulp
+
+#download vscode
+RUN curl -sL https://github.com/microsoft/vscode/archive/1.40.0.tar.gz > vscode.tgz
+RUN tar xzf vscode.tgz
+WORKDIR /vscode-1.40.0
+RUN yarn install --arch=x64
+RUN node --max_old_space_size=6144 `command -v gulp` vscode-linux-x64-min
+
+RUN echo "#!/bin/bash" > /usr/bin/code
+RUN echo 'ELECTRON_RUN_AS_NODE=1 exec electron /usr/lib/code-git/out/cli.js /usr/lib/code-git/code-git.js "$@"' >> /usr/bin/code
+RUN chmod +x /usr/bin/code
+
+RUN mkdir -v /usr/lib/code-git
+
+RUN echo "#!/usr/bin/electron \n\
+  const name = 'code-git'; \n\
+  const app = require('electron').app; \n\
+  const path = require('path'); \n\
+  const fs = require("fs"); \n\
+ \n\
+  const fd = fs.openSync("/proc/self/comm", fs.constants.O_WRONLY); \n\
+  fs.writeSync(fd, name); \n\
+  fs.closeSync(fd); \n\
+ \n\
+  process.argv.splice(0, 1); \n\
+ \n\
+  const appPath = __dirname; \n\
+  const packageJson = require(path.join(appPath, 'package.json')); \n\
+  app.setAppPath(appPath); \n\
+  app.setDesktopName(name + '.desktop'); \n\
+  app.setName(name); \n\
+  app.setPath('userCache', path.join(app.getPath('cache'), name)); \n\
+  app.setPath('userData', path.join(app.getPath('appData'), name)); \n\
+  app.setVersion(packageJson.version); \n\
+ \n\
+  require('module')._load(appPath, module, true);" > /usr/lib/code-git/code-git.js
+
+#RUN cp -r --no-preserve=ownership --preserve=mode /vscode-1.40.0/resources/app/* /usr/lib/code-git
+#RUN ln -sf /usr/bin/rgrep /usr/lib/code-git/node_modules.asar.unpacked/vscode-ripgrep/bin/rg
+
+RUN useradd -m -p qassword duser
+USER duser
+
+CMD /bin/sh

@@ -28,7 +28,7 @@ RUN pacman -Sy --noconfirm base-devel
 RUN pacman -Sy --noconfirm git gulp npm python2 yarn nodejs-lts-dubnium
 RUN useradd -u 1000 -m auser
 COPY --from=builder /home/auser/code-git/code-git-1.38.0.r15049.g313381b6783-1-x86_64.pkg.tar.zst /code-x86_64.pkg.tar.zst
-RUN pacman -U --clean --noconfirm /code-x86_64.pkg.tar.zst
+RUN pacman -U --noconfirm /code-x86_64.pkg.tar.zst
 USER auser
 WORKDIR /home/auser
 

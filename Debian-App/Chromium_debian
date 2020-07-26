@@ -4,6 +4,7 @@ label maintainer="Okadarien Saru <okadas@dev.sysnk.net>"
 
 RUN apt-get update
 RUN apt-get install -y mate
+RUN apt-get install -y pulseaudio
 RUN apt-get install -y sudo
 RUN apt-get install -y locales locales-all
 RUN apt-get install -y chromium 
