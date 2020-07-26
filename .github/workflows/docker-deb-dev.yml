@@ -1,4 +1,4 @@
-name: Docker for deb-dev
+name: debian-dev
 
 on:
   push:

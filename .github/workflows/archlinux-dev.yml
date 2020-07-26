@@ -1,4 +1,4 @@
-name: Docker for archlinux-dev
+name: archlinux-dev
 
 on:
   push:

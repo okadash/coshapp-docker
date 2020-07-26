@@ -1,10 +1,10 @@
-![Docker for deb-base](https://github.com/coshdev/coshapp-docker/workflows/Docker%20for%20deb-base/badge.svg)
-![Docker for deb-app](https://github.com/coshdev/coshapp-docker/workflows/Docker%20for%20deb-app/badge.svg)
-![Docker for deb-dev](https://github.com/coshdev/coshapp-docker/workflows/Docker%20for%20deb-dev/badge.svg)
-![Docker for deb-sys](https://github.com/coshdev/coshapp-docker/workflows/Docker%20for%20deb-sys/badge.svg)
-![Docker for archlinux](https://github.com/coshdev/coshapp-docker/workflows/Docker%20for%20archlinux/badge.svg)
-![Docker for archlinux-dev](https://github.com/coshdev/coshapp-docker/workflows/Docker%20for%20archlinux-dev/badge.svg)
-![Docker for fedora](https://github.com/coshdev/coshapp-docker/workflows/Docker%20for%20fedora/badge.svg)
+![debian-base](https://github.com/coshdev/coshapp-docker/workflows/debian-base/badge.svg)
+![debian-app](https://github.com/coshdev/coshapp-docker/workflows/debian-app/badge.svg)
+![debian-dev](https://github.com/coshdev/coshapp-docker/workflows/debian-dev/badge.svg)
+![debian-sys](https://github.com/coshdev/coshapp-docker/workflows/debian-sys/badge.svg)
+![archlinux](https://github.com/coshdev/coshapp-docker/workflows/archlinux/badge.svg)
+![archlinux-dev](https://github.com/coshdev/coshapp-docker/workflows/archlinux-dev/badge.svg)
+![fedora](https://github.com/coshdev/coshapp-docker/workflows/fedora/badge.svg)
 
 # COSHAPP dockerfile templates
 

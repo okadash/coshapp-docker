@@ -1,4 +1,4 @@
-name: Docker for deb-sys
+name: debian-sys
 
 on:
   push:
