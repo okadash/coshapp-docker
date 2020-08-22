@@ -9,6 +9,7 @@ RUN apt-get install -y sudo
 RUN apt-get install -y locales locales-all
 RUN apt-get install -y firefox-esr firefox-esr-l10n-ja
 RUN apt-get install -y libreoffice-gtk3 libreoffice-l10n-ja
+RUN apt-get install -y libreoffice libreoffice-writer libreoffice-draw libreoffice-calc libreoffice-impress libreoffice-base
 RUN apt-get install -y fonts-noto-mono fonts-noto-cjk fonts-noto-color-emoji
 RUN apt-get clean all
 RUN useradd -m duser
