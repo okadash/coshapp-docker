@@ -19,6 +19,12 @@ build_image(){
       test `basename $j` = "version" && break;
       docker build --build-arg=coshapp_ver=$coshapp_ver -t ${img_desc:?img not specified} -f $j .;
       docker push $img_desc
+      set -o xtrace
+      test ${tag_name:? tag_name not set} != "${tag_name##debian}" && \
+        test "${tag_name##debian}" = "" && {
+          docker tag $img_desc ${img_desc%%:*}:latest
+          docker push ${img_desc%%:*}:latest
+        }
     done
   done
 }
