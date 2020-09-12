@@ -25,7 +25,7 @@ RUN pacman -Sy --noconfirm sudo
 RUN pacman -Sy --noconfirm mate xorg-server xorg-drivers
 RUN pacman -Sy --noconfirm noto-fonts 
 RUN pacman -Sy --noconfirm base-devel
-RUN pacman -Sy --noconfirm git gulp npm python2 yarn nodejs-lts-dubnium
+RUN pacman -Sy --noconfirm git python2
 RUN useradd -u 1000 -m auser
 COPY --from=builder /home/auser/code-git/code-git-*.zst /code-x86_64.pkg.tar.zst
 RUN pacman -U --noconfirm /code-x86_64.pkg.tar.zst
