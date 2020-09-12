@@ -1,0 +1,23 @@
+ARG coshapp_ver
+FROM debian:${coshapp_ver:-10.4}
+label maintainer="Okadarien Saru <okadas@dev.sysnk.net>"
+
+RUN apt-get update
+RUN apt-get install -y mate
+RUN apt-get install -y pulseaudio
+RUN apt-get install -y sudo
+RUN apt-get install -y locales locales-all
+RUN apt-get install -y curl
+RUN apt-get install -y firefox-esr firefox-esr-l10n-ja
+RUN apt-get install -y wget 
+RUN apt-get install apt-transport-https
+RUN wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+RUN echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+#RUN echo "deb https://download.sublimetext.com/ apt/dev/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+RUN apt-get update
+RUN apt-get install sublime-text
+RUN apt-get install -y fonts-noto-mono fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji
+RUN apt-get install -y ibus ibus-mozc
+RUN apt-get clean all
+RUN useradd -m duser
+CMD /bin/sh
