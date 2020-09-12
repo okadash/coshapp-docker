@@ -4,6 +4,7 @@ label maintainer="Okadarien Saru <okadas@dev.sysnk.net>"
 
 RUN pacman -Sy --noconfirm sudo
 RUN pacman -Sy --noconfirm mate xorg-server xorg-drivers
+RUN pacman -Sy --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji
 RUN pacman -Sy --noconfirm gnote
 RUN pacman -S --clean --noconfirm
 RUN useradd -m auser
