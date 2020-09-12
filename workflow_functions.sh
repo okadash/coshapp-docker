@@ -11,13 +11,20 @@ set_image_name(){
 }
           
 build_image(){ 
-  for coshapp_ver in ${coshapp_ver:-10.4}; do 
+  coshapp_ver=`cat ${1%%/*}/version`
+  for coshapp_ver in ${coshapp_ver:-10.5}; do 
     for j in $@; do
       export coshapp_ver;
       set_image_name $j ;
       test `basename $j` = "version" && break;
       docker build --build-arg=coshapp_ver=$coshapp_ver -t ${img_desc:?img not specified} -f $j .;
       docker push $img_desc
+      set -o xtrace
+      test ${tag_name:? tag_name not set} != "${tag_name##debian}" && \
+        test "${tag_name##debian}" = "" && {
+          docker tag $img_desc ${img_desc%%:*}:latest
+          docker push ${img_desc%%:*}:latest
+        }
     done
   done
 }
