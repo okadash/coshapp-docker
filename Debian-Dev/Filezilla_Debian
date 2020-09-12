@@ -9,6 +9,7 @@ RUN apt-get install -y sudo
 RUN apt-get install -y locales locales-all
 RUN apt-get install -y curl
 RUN apt-get install -y filezilla
+RUN apt-get install -y openssl openssh-client
 RUN apt-get clean all
 RUN useradd -m duser
 CMD /bin/sh

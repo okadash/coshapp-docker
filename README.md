@@ -1,5 +1,4 @@
 ![debian-base](https://github.com/coshdev/coshapp-docker/workflows/debian-base/badge.svg)
-![debian-app](https://github.com/coshdev/coshapp-docker/workflows/debian-app/badge.svg)
 ![debian-dev](https://github.com/coshdev/coshapp-docker/workflows/debian-dev/badge.svg)
 ![debian-sys](https://github.com/coshdev/coshapp-docker/workflows/debian-sys/badge.svg)
 ![archlinux](https://github.com/coshdev/coshapp-docker/workflows/archlinux/badge.svg)
